@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 const chalk = require('chalk');
-
+const CFonts = require('cfonts');
 const url = "https://animechan.vercel.app/api/random";
 
 axios({
@@ -14,5 +14,38 @@ axios({
     const sayer = res.data.character;
     const anime = res.data.anime;
 
-    console.log(`${quote} by ${sayer} from ${anime}`);
-})
+    // console.log(`${quote} by ${sayer} from ${anime}`);
+    // console.log(chalk.yellow.bgRed.bold(`${quote} ----- ${sayer} from ${anime}`));
+    // CFonts.say(`${quote} ---- ${sayer} from ${anime}`, {
+    //     font: 'chrome',              // define the font face
+    //     align: 'center',              // define text alignment
+    //     colors: ['#0ff' , 'green' , '#ff0'],         // define all colors
+    //     background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
+    //     letterSpacing: 1,           // define letter spacing
+    //     lineHeight: 1,              // define the line height
+    //     space: true,                // define if the output text should have empty lines on top and on the bottom
+    //     maxLength: '0',             // define how many character can be on one line
+    //     gradient: false,            // define your two gradient colors
+    //     independentGradient: false, // define if you want to recalculate the gradient for each new line
+    //     transitionGradient: false,  // define if this is a transition between colors directly
+    //     env: 'node'                 // define the environment CFonts is being executed in
+
+
+        CFonts.say(`${quote} ---- ${sayer} from ${anime}`, {
+            font: 'console',              // define the font face
+            align: 'center',              // define text alignment
+            colors: ['#0ff' , 'green' , '#ff0'],         // define all colors
+            background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
+            letterSpacing: 1,           // define letter spacing
+            lineHeight: 1,              // define the line height
+            space: true,                // define if the output text should have empty lines on top and on the bottom
+            maxLength: '0',             // define how many character can be on one line
+            gradient: ['red', 'blue'],            // define your two gradient colors
+            independentGradient: false, // define if you want to recalculate the gradient for each new line
+            transitionGradient: false,  // define if this is a transition between colors directly
+            env: 'node'                 // define the environment CFonts is being executed in
+    });
+}).catch(err => {
+    const log = chalk.red(err) // we set the color red here for errors.
+    console.log(log)
+  })
