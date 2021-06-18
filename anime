@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const axios = require('axios');
+const chalk = require('chalk');
+
+const url = "https://animechan.vercel.app/api/random";
+
+axios({
+    method : 'get',
+    url : url,
+    headers : { 'Accept': 'application/json'},
+}).then(res => {
+    const quote = res.data.quote;
+    const sayer = res.data.character;
+    const anime = res.data.anime;
+
+    console.log(`${quote} by ${sayer} from ${anime}`);
+})
